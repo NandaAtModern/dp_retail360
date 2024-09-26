@@ -4,7 +4,7 @@ type: workflow
 tags:
   - workflow
   - soda-checks
-description: Empowering sales360 dp.
+description: Empowering retail360 dp.
 workspace: public
 workflow:
   schedule:

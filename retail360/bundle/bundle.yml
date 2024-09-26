@@ -19,23 +19,23 @@ bundle:
 
 
     - id: sales
-      file: dp_retail360/bundle/quality/output/sales.yml
+      file: retail360/bundle/quality/output/sales.yml
       workspace: public
 
     - id: customer
-      file: dp_retail360/bundle/quality/input/customer.yml
+      file: retail360/bundle/quality/input/customer.yml
       workspace: public
 
     - id: product
-      file: dp_retail360/bundle/quality/input/product.yml
+      file: retail360/bundle/quality/input/product.yml
       workspace: public
 
     - id: lens 
-      file: dp_retail360/bundle/lens2/deployement.yml
+      file: retail360/bundle/lens2/deployement.yml
       workspace: public
 
     - id: dataapi
-      file: dp_retail360/bundle/dataApi/service.yaml
+      file: retail360/bundle/dataApi/service.yaml
       workspace: public
       dependencies:
         - lens
