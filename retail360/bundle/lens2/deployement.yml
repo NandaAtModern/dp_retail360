@@ -22,7 +22,7 @@ lens:
 
     # secretId: lens2_bitbucket_r
     syncFlags:
-      - --ref=main
+      - --ref=master
 
   api:   # optional
     replicas: 1 # optional
