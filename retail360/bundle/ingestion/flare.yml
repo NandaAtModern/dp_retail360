@@ -1,0 +1,84 @@
+---
+version: v1  # v1
+name: wf-sales360-data
+type: workflow
+tags:
+  - adobe
+description: Reading data from bigquery and writing into icebase.
+workflow:
+  dag:
+    - name: dg-sales360-data
+      spec:
+        stack: flare:4.0
+        compute: runnable-default
+        flare:
+          driver:
+            coreLimit: 3000m
+            cores: 2
+            memory: 4000m
+          executor:
+            coreLimit: 4000m
+            cores: 2
+            instances: 3
+            memory: 6000m
+          job:
+            explain: true
+            inputs:
+              - name: site
+                dataset: dataos://bigquery:sales_360/site_check1?acl=rw
+                format: bigquery
+
+              - name: sales
+                dataset: dataos://bigquery:sales_360/f_sales?acl=rw
+                format: bigquery
+
+              - name: customer
+                dataset: dataos://bigquery:sales_360/customer_data_master?acl=rw
+                format: bigquery
+
+              - name: product
+                dataset: dataos://bigquery:sales_360/product_data_master?acl=rw
+                format: bigquery
+
+  
+            outputs:
+              - name: site
+                dataset: dataos://icebase:sales_360/location?acl=rw
+                format: iceberg
+                options:
+                  iceberg:
+                    properties:
+                      write.format.default: parquet
+                      write.metadata.compression-codec: gzip
+                  saveMode: overwrite
+
+              - name: sales
+                dataset: dataos://icebase:sales_360/sales?acl=rw
+                format: iceberg
+                options:
+                  iceberg:
+                    properties:
+                      write.format.default: parquet
+                      write.metadata.compression-codec: gzip
+                  saveMode: overwrite
+
+              - name: customer
+                dataset: dataos://icebase:sales_360/account?acl=rw
+                format: iceberg
+                options:
+                  iceberg:
+                    properties:
+                      write.format.default: parquet
+                      write.metadata.compression-codec: gzip
+                  saveMode: overwrite
+
+              - name: product
+                dataset: dataos://icebase:sales_360/product?acl=rw
+                format: iceberg
+                options:
+                  iceberg:
+                    properties:
+                      write.format.default: parquet
+                      write.metadata.compression-codec: gzip
+                  saveMode: overwrite
+

@@ -1,0 +1,77 @@
+---
+version: v1alpha
+name: "retail360-lens"
+layer: user
+type: lens
+tags:
+  - lens
+description: This is focused on analyzing and understanding purchase behavior across various dimensions, providing a 360-degree view of customer purchasing patterns.
+lens:
+  compute: runnable-default
+  # secrets:
+  #   - name: bitbucket-cred
+  #     allKeys: true
+  source:
+    type: minerva
+    name: miniature
+    catalog: icebase
+  repo:
+    url: https://github.com/NandaAtModern/
+    lensBaseDir: dp_retail360/retail360/bundle/lens2/model
+   
+
+    # secretId: lens2_bitbucket_r
+    syncFlags:
+      - --ref=main
+
+  api:   # optional
+    replicas: 1 # optional
+    logLevel: info  # optional
+    envs:
+      LENS2_SCHEDULED_REFRESH_TIMEZONES: "UTC,America/Vancouver,America/Toronto"
+    resources: # optional
+      requests:
+        cpu: 100m
+        memory: 256Mi
+      limits:
+        cpu: 2000m
+        memory: 2048Mi
+  worker: # optional
+    replicas: 2 # optional
+    logLevel: debug  # optional
+    envs:
+      LENS2_SCHEDULED_REFRESH_TIMEZONES: "UTC,America/Vancouver,America/Toronto"
+     
+
+
+    resources: # optional
+      requests:
+        cpu: 100m
+        memory: 256Mi
+      limits:
+        cpu: 6000m
+        memory: 6048Mi
+  router: # optional
+    logLevel: info  # optional
+    envs:
+      LENS2_SCHEDULED_REFRESH_TIMEZONES: "UTC,America/Vancouver,America/Toronto"
+     
+    resources: # optional
+      requests:
+        cpu: 100m
+        memory: 256Mi
+      limits:
+        cpu: 6000m
+        memory: 6048Mi
+  iris:
+    logLevel: info  
+    resources: # optional
+      requests:
+        cpu: 100m
+        memory: 256Mi
+      limits:
+        cpu: 6000m
+        memory: 6048Mi
+
+  metric:
+    logLevel: info

@@ -1,0 +1,99 @@
+tables:
+  - name: product
+    sql: {{ load_sql('product') }}
+    description: product table containing information about product
+    public: true
+    meta:
+      export_to_board: false
+
+    dimensions:
+      - name: item_no
+        primary_key: True 
+        type: string
+        description: A unique identifier assigned to each product item.
+        column: item_no
+        
+      - name: category
+        type: string
+        description: Represents the broader classification of the product, indicating the type or group to which the item belongs
+        column: category
+
+      - name: brand 
+        type: string
+        description: Specifies the brand associated with the product.
+        column: brand 
+
+      - name: product_name
+        type: string
+        description: The official name of the product as listed by the supplier, used for display and identification purposes.
+        column: product_name
+
+      - name: class
+        type: string
+        description: A secondary classification that further refines the product category, providing a more specific group under the main category.
+        column: class
+
+      - name: class_description
+        type: string
+        description: A detailed explanation or definition of the product class, outlining its characteristics and what it represents.
+        column: class_description
+
+      - name: sub_class
+        type: string
+        description: A tertiary classification that provides additional granularity, often used to differentiate products within the same class based on unique features or attributes.
+        column: sub_class
+
+      - name: flavor
+        type: string
+        description: Indicates the flavor profile of the product.
+        column: flavor
+
+      - name: varietal
+        type: string
+        description: Denotes the specific variety or type of product,to describe the particular breed.
+        column: varietal
+
+      - name: vintage
+        type: string
+        description: Specifies the year of production, typically used for wine, indicating the harvest year or production period.
+        column: vintage
+
+      - name: product_size
+        type: string
+        description: Describes the physical size or volume of the product, including units of measure.
+        column: product_size
+
+      - name: bottles_per_case
+        type: number
+        description: The number of bottles included in a single case of the product, used for similar items sold in bulk packaging.
+        column: bottles_per_case
+
+      - name: unit_price 
+        type: number
+        description: The price of the product per individual unit, used for pricing.
+        column: unit_price 
+
+      - name: supplier_name 
+        type: string
+        description: The name of the supplier or vendor responsible for providing the product, useful for supply chain management and vendor relations.
+        column: supplier_name 
+
+      - name: warehouse_no
+        type: string
+        description: Identifies the warehouse where the product is stored, providing information on stock location for inventory management.
+        column: warehouse_no
+
+      - name: prod_availability_start_date
+        type: string
+        description: The date from which the product becomes available for sale or distribution.
+        column: prod_availability_start_date
+
+      - name: prod_availability_end_date
+        type: string
+        description: The date after which the product is no longer available, either due to discontinuation or stock depletion.
+        column: prod_availability_end_date
+
+    measures:
+      - name: total_items
+        type: count_distinct
+        sql: item_no

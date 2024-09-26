@@ -1,0 +1,66 @@
+name: soda-sales-checks
+version: v1
+type: workflow
+tags:
+  - workflow
+  - soda-checks
+description: Empowering sales360 dp.
+workspace: public
+workflow:
+  schedule:
+    cron: '35 02 * * *'
+    concurrencyPolicy: Forbid
+  dag:
+    - name: soda-job-v1
+      spec:
+        stack: soda+python:1.0
+        compute: runnable-default
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 250Mi
+          limits:
+            cpu: 1000m
+            memory: 250Mi
+        logLevel: INFO # WARNING, ERROR, DEBUG
+        stackSpec:
+          inputs:
+            - dataset: dataos://icebase:sales_360/sales
+              options:
+                engine: minerva
+                clusterName: system
+              profile:
+                columns:
+                  - include *
+
+              checks:
+                # - freshness  < 2d:
+                #     name: Freshness of the Invoice Date
+                #     freshness query: |
+                #       SELECT 
+                #         cast(invoice_dt_sk as date) as freshness
+                #       FROM icebase.sales360mockdb.f_sales
+                #     attributes:
+                #       category: Freshness
+
+                - schema:
+                    name: Required Columns
+                    fail:
+                      when required column missing: 
+                        - ext_net
+                        - order_no
+                        - invoice_no
+                        - cases
+                        - bottles
+                    attributes:
+                      category: Schema
+
+                - missing_count(invoice_no) = 0:
+                    name: Completeness of the Invoice Number Column
+                    attributes:
+                      category: Completeness
+                      
+
+
+
+

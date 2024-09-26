@@ -1,0 +1,56 @@
+name: retail360
+version: v1beta
+entity: product
+type: data
+tags:   
+  - DPDomain.Retail OPS
+  - DPUsecase.Purchasing Behaviour Analysis
+  - DPTier.Consumer Aligned
+description: Get a comprehensive analysis of sales metrics, including purchase behavior, revenue trends, and customer insights. This data supports detailed exploration and understanding of sales performance, enabling strategic decision-making and optimization across product and customer dimensions.
+refs:
+- title: 'Workspace Info'
+  href: https://dataos.info/interfaces/cli/command_reference/#workspace
+v1beta:
+  data:
+    meta:
+      # sourceCodeUrl: https://bitbucket.org/tmdc/sales_360/src/main/
+      # trackerUrl: https://rubikai.atlassian.net/browse/DPRB-2?atlOrigin=eyJpIjoiOWEyOGQxZWU5NmRiNGViZTlmYjcxYjBhNWQwYmFkZDUiLCJwIjoiaiJ9
+      foo: bar
+    collaborators:
+      - name: nandapage
+        description: consumer
+      - name: kanakgupta
+        description: developer
+
+    resource:
+      description: 'Ingest data'
+
+      refType: dataos
+      ref: bundle:v1beta:retail360-bundle
+    inputs:
+    - description: Fetching sales data from the S3 bucket, for comprehensive analysis of sales metrics, providing insights into revenue trends, performance tracking, and decision-making support.
+      refType: dataos
+      ref: dataset:icebase:sales360mockdb:f_sales
+
+    - description: Pulling customer data from the S3 bucket, for understanding customer demographics, behaviors, preferences and customer segmentation.
+      refType: dataos
+      ref: dataset:icebase:sales360mockdb:customer_data_master
+
+    - description: Fetching product data from the S3 bucket,to get a full view of the product portfolio, product performance analysis, and market positioning strategies.
+      refType: dataos 
+      ref: dataset:icebase:sales360mockdb:product_data_master
+
+    outputs:
+    - description: The objective is to expose this sales data to facilitate the creation of data APIs to enable seamless access to sales data, allowing integration with external systems, real-time data consumption, and enhanced analytical capabilities.
+      refType: dataos
+      ref: dataset:icebase:sales360mockdb:f_sales
+
+    ports:
+      lens:
+        ref: lens:v1alpha:retail360-lens:public
+        refType: dataos
+
+      talos:
+      - ref: service:v1:service-retail360-api:public
+        refType: dataos
+

@@ -1,0 +1,67 @@
+views:
+  - name: conversion_rate
+    description: This metric tracks the percentage of leads or prospects who successfully converted into paying customers over a month time period. It provides insights into the effectiveness of marketing efforts and sales processes.
+    public: true
+    meta:
+      title: Conversion Rate
+      tags: 
+        - DPDomain.Sales OPS
+        - DPUsecase.Purchasing Behaviour Analysis
+        - DPTier.Consumer Aligned
+      metric:
+        expression: "*/5  * * * *"
+        timezone: "UTC"
+        window: "month" 
+        excludes: 
+          - invoice_no
+    tables:
+      - join_path: sales
+        prefix: true
+        includes:
+          - frequency
+          - customer_no
+          - invoice_date
+          - invoice_no
+
+
+  - name: qtd_revenue
+    description: This metric tracks the total revenue generated in the current quarter to date (QTD). It provides insights into financial performance over the quarter, helping to evaluate growth trends and revenue targets.
+    public: true
+    meta:
+      title: QTD Revenue
+      tags: 
+        - DPDomain.Sales
+        - DPUsecase.Purchasing Behaviour Analysis
+        - DPTier.Consumer Aligned
+      metric:
+        expression: "*/5  * * * *"
+        timezone: "UTC"
+        window: "month"
+        excludes:
+         - ext_net
+
+    tables:
+      - join_path: sales
+        prefix: true
+        includes:
+          - total_revenue
+          # - frequency
+          - invoice_date
+          - ext_net
+          - source
+
+      - join_path: product
+        prefix: true
+        includes:
+          - category
+          - brand
+          - class
+
+      - join_path: account
+        prefix: true
+        includes:
+          - site_name
+          - state
+          - license_type
+          - customer_name
+          

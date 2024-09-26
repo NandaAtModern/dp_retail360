@@ -1,0 +1,50 @@
+name: buying_pattern_apis
+description: An api for analyzing consumer buying patterns and trends.
+version: 0.1.13-dev
+auth:
+  heimdallUrl: https://liberal-donkey.dataos.app/heimdall
+  # userGroups:
+  #   - name: Beer
+  #     description: Beer tester
+  #     includes:
+  #       - roles:id:data-dev
+logLevel: 'DEBUG' 
+cachePath: tmp
+sources:
+  - name: lens # profile name
+    type: lens #depot,postgres,biqquery,snowflake,redshift
+    lensName: 'public:retail360-lens'
+
+rateLimit:
+  enabled: true
+  options:
+    interval:
+      min: 1
+    max: 100
+    delayAfter: 4
+# cors:
+#   enabled: true
+#   options:
+#     origin: 'https://google.com'
+#     allowMethods: 'GET'  
+
+metrics:
+  type: summary
+  percentiles: [ 0.5, 0.75, 0.95, 0.98, 0.99, 0.999 ]
+
+
+
+  
+
+
+  # - name: pg # profile name
+  #   type: pg
+  #   connection:
+  #     host: tcp.liberal-donkey.dataos.app
+  #     port: 6432
+  #     user: kanakgupta
+  #     password: bmV3bGVuc2FwaS40MmYyOTY5OS1hY2YyLTQ4OGEtYjdhMi01ZDI4YWVlNjNhYmM=
+  #     database: lens:public:sales360
+
+  # type: histogram
+  # buckets: [ 0.003, 0.03, 0.1, 0.3, 1.5, 10, 20, 50 ]   

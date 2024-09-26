@@ -1,0 +1,52 @@
+name: retail360-bundle
+version: v1beta
+type: bundle
+tags:
+  - dataproduct
+description: This bundle resource is for the data product retail360.
+layer: "user"
+bundle:
+  workspaces:
+    - name: public
+      description: "This workspace runs bundle resources for the retail360"
+      tags:
+        - dataproduct
+        - bundleResource
+      labels:
+        name: "dataproductBundleResources"
+      layer: "user"
+  resources:
+
+
+    - id: sales
+      file: dp_retail360/bundle/quality/output/sales.yml
+      workspace: public
+
+    - id: customer
+      file: dp_retail360/bundle/quality/input/customer.yml
+      workspace: public
+
+    - id: product
+      file: dp_retail360/bundle/quality/input/product.yml
+      workspace: public
+
+    - id: lens 
+      file: dp_retail360/bundle/lens2/deployement.yml
+      workspace: public
+
+    - id: dataapi
+      file: dp_retail360/bundle/dataApi/service.yaml
+      workspace: public
+      dependencies:
+        - lens
+
+    # - id: ingestion
+    #   file: dp_retail360/bundle/ingestion/flare.yml
+    #   workspace: public
+    
+
+
+
+
+
+
