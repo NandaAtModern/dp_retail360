@@ -6,7 +6,7 @@ tags:
   - DPDomain.Retail OPS
   - DPUsecase.Purchasing Behaviour Analysis
   - DPTier.Consumer Aligned
-description: Get a comprehensive analysis of sales metrics, including purchase behavior, revenue trends, and customer insights. This data supports detailed exploration and understanding of sales performance, enabling strategic decision-making and optimization across product and customer dimensions.
+description: Get a comprehensive analysis of important business metrics, including purchase behavior, revenue trends, and customer insights. This analysis helps identify patterns, preferences, and purchasing trends, providing insights into customer segmentation, and personalized marketing strategies.
 refs:
 - title: 'Workspace Info'
   href: https://dataos.info/interfaces/cli/command_reference/#workspace
