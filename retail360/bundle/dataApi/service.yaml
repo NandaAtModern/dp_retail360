@@ -34,7 +34,7 @@ service:
   #     allKeys: true
   stackSpec:
     repo:
-      url: https://github.com/NandaAtModern/
+      url: https://github.com/NandaAtModern/dp_retail360/
       projectDirectory: dp_retail360/retail360/bundle/dataApi
       syncFlags:
-        - --ref=main
+        - --ref=master

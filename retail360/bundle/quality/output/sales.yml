@@ -25,7 +25,7 @@ workflow:
         logLevel: INFO # WARNING, ERROR, DEBUG
         stackSpec:
           inputs:
-            - dataset: dataos://icebase:sales_360/sales
+            - dataset: dataos://icebase:sales360mockdb/f_sales
               options:
                 engine: minerva
                 clusterName: system

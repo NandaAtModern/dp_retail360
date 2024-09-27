@@ -16,7 +16,7 @@ lens:
     name: miniature
     catalog: icebase
   repo:
-    url: https://github.com/NandaAtModern/
+    url: https://github.com/NandaAtModern/dp_retail360/
     lensBaseDir: dp_retail360/retail360/bundle/lens2/model
    
 
