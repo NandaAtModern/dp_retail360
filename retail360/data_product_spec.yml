@@ -42,8 +42,8 @@ v1beta:
 
     outputs:
     - description: The objective is to expose this sales data to facilitate the creation of data APIs to enable seamless access to sales data, allowing integration with external systems, real-time data consumption, and enhanced analytical capabilities.
-      refType: dataos
-      ref: dataset:icebase:sales360mockdb:f_sales
+      refType: depot
+      ref: dataos://icebase:sales360_mockdb/sales
 
     ports:
       lens:

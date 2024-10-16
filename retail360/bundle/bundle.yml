@@ -16,8 +16,6 @@ bundle:
         name: "dataproductBundleResources"
       layer: "user"
   resources:
-
-
     - id: sales
       file: retail360/bundle/quality/output/sales.yml
       workspace: public
